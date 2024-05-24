@@ -11,7 +11,7 @@ def menu():
     print("1- Ingresar 1er operando")
     print("2- Ingresar 2do operando")
     print("3- Elegir operacion")
-    print("4- Resetear operandos")
+    print("4- Reiniciar operandos")
     print("5- Salir")
     return input("Ingrese opcion: ")
 
@@ -49,54 +49,54 @@ seguir = True
 while seguir:
     limpiar_pantalla()
     
-    opcion = menu()
-    match opcion:
+    
+    match menu():
         case "1":
-            if operando1 is None:
+            if operando1 == None:
                 operando1 = obtener_num()
             else:
                 print("El numero 1 ya fue ingresado")
         case "2":
-            if operando1 is not None:
-                if operando2 is None:
+            if operando1 != None:
+                if operando2 == None:
                     operando2 = obtener_num()
                 else:
                     print("El numero 2 ya fue ingresado")
             else:
                 print("Primero ingresa el operando 1")
         case "3":
-            if operando1 != None and operando2 is not None:
-                operacion = elegir_operacion()
-                match operacion:
+            if operando1 != None and operando2 != None:
+                
+                match elegir_operacion():
                     case "a":
                         resultado = sumar(operando1, operando2)
-                        print(f"El resultado de la suma es= {resultado}")
+                        print(f"El resultado de la suma es: {resultado}")
                     case "b":
                         resultado = restar(operando1, operando2)
-                        print(f"El resultado de la resta es= {resultado}")
+                        print(f"El resultado de la resta es: {resultado}")
                     case "c":
                         if operando2 != 0:
                             resultado = dividir(operando1, operando2)
-                            print(f"El resultado de la division es= {resultado}")
+                            print(f"El resultado de la division es: {resultado}")
                         else:
-                            print("Error: División por cero")
+                            print("No se puede dividir por 0")
                     case "d":
                         resultado = multiplicar(operando1, operando2)
-                        print(f"El resultado de la multiplicacion es= {resultado}")
+                        print(f"El resultado de la multiplicacion es: {resultado}")
                     case _:
-                        print("Operación no válida")
+                        print("La operacion no es valida")
             else:
-                print("Primero ingresa ambos operandos")
+                print("Primero ingresa los dos operandos")
         case "4":
-            if pedir_confirmacion("Deseas resetear los operandos? s/n: "):
+            if pedir_confirmacion("Queres reiniciar los operandos? s/n: "):
                 operando1 = None
                 operando2 = None
-                print("Operandos reseteados.")
+                print("Operandos reiniciados")
         case "5":
             if pedir_confirmacion("Confirma salida? s/n: "):
                 seguir = False
         case _:
-            print("Opción no válida")
+            print("La opcion no es valida")
         
     pausar()
 
